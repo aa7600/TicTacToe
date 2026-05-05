@@ -6,9 +6,11 @@ public class TicTacToe {
 
         initializeBoard();
 
+        // Example move
         placeMove(0, 0, 'X');
 
-        System.out.println(board[0][0]); // should print X
+        // Print the updated cell
+        System.out.println(board[0][0]); // Output: X
     }
 
     // Initialize board with '-'
@@ -20,7 +22,7 @@ public class TicTacToe {
         }
     }
 
-    // Place symbol on board
+    // UC6: Place symbol on board
     static void placeMove(int row, int col, char symbol) {
         board[row][col] = symbol;
     }
