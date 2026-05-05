@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class TicTacToe {
 
     static char[][] board = {
@@ -6,24 +8,39 @@ public class TicTacToe {
         {'-', '-', '-'}
     };
 
-    public static void main(String[] args) {
+    static char computerSymbol = 'O';
 
-        System.out.println(isValidMove(1, 1)); // true
-        System.out.println(isValidMove(3, 3)); // false (out of bounds)
+    public static void main(String[] args) {
+        computerMove();
+        printBoard();
     }
 
-    static boolean isValidMove(int row, int col) {
+    // UC7: Computer makes random valid move
+    static void computerMove() {
+        Random rand = new Random();
 
-        // Check boundaries
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+        while (true) {
+            int slot = rand.nextInt(9) + 1; // 1 to 9
+
+            int row = (slot - 1) / 3;
+            int col = (slot - 1) % 3;
+
+            // check if empty
+            if (board[row][col] == '-') {
+                board[row][col] = computerSymbol;
+                System.out.println("Computer chose slot: " + slot);
+                break;
+            }
         }
+    }
 
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
+    // helper to print board
+    static void printBoard() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
-
-        return true;
     }
 }
