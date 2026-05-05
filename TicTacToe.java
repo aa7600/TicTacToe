@@ -1,29 +1,28 @@
 public class TicTacToe {
 
     static char[][] board = {
-        {'-', '-', '-'},
-        {'-', '-', '-'},
-        {'-', '-', '-'}
+        {'X', 'O', 'X'},
+        {'X', 'O', 'O'},
+        {'O', 'X', 'X'}
     };
 
     public static void main(String[] args) {
-
-        System.out.println(isValidMove(1, 1)); // true
-        System.out.println(isValidMove(3, 3)); // false (out of bounds)
+        System.out.println(isDraw());
     }
 
-    static boolean isValidMove(int row, int col) {
+    // UC10: Detect draw condition
+    static boolean isDraw() {
 
-        // Check boundaries
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
+        for (int r = 0; r < 3; r++) {
+            for (int c = 0; c < 3; c++) {
+
+                if (board[r][c] == '-') {
+                    return false; // still empty → not draw
+                }
+
+            }
         }
 
-        // Check if cell is empty
-        if (board[row][col] != '-') {
-            return false;
-        }
-
-        return true;
+        return true; // no empty cells → draw
     }
 }
